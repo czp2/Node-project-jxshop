@@ -1,0 +1,19 @@
+<iframe style="height: 1000px;" src="https://3gimg.qq.com/lightmap/components/locationPicker2/index.html?search=1&type=1&key=XVXBZ-NDMC4-JOGUS-XGIEE-QVHDZ-AMFV2&referer=uniapp"
+    frameborder="0"></iframe>
+
+<script>
+    window.addEventListener('message', function (event) {
+        let loc = event.data;
+        if (loc && loc.module == 'locationPicker') {
+            console.log('location', loc);
+            sessionStorage.setItem('location',loc.cityname)
+            location.href = './index.html'
+            // name: loc.poiname,
+            // addr: loc.poiaddress,
+            // latng: `${loc.latlng.lat},${loc.latlng.lng}`,
+            // city: loc.cityname,
+            // module: loc.module,
+            // window.history.back();
+        }
+    }, false);
+</script>
