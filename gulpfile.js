@@ -148,9 +148,7 @@ gulp.task('build', gulp.series('clean', 'js', 'css', 'imgs', 'html', () => {
 // 通过node搞web服务器开发的时候使用
 const server = require('browser-sync').create();
 const watch = require('gulp-watch');
-const {
-    createProxyMiddleware
-} = require('http-proxy-middleware');
+const {createProxyMiddleware} = require('http-proxy-middleware');
 gulp.task('serve', function () {
     server.init({
         server:'./src',
@@ -158,17 +156,19 @@ gulp.task('serve', function () {
     })
     // server.init({
     //     server: {
-    //         baseDir: 'src',
+    //         baseDir: './src',
     //         middleware: [
     //             createProxyMiddleware('/api', {
-    //                 target: 'http://kg.zhaodashen.cn/',
-    //                 changeOrigin: true,
-    //                 secure: false,
-    //                 pathRewrite: {
-    //                     '^/api':''
-    //                 }
-    //             }),
-    //             // ...
+    //                 // 目标服务器网址
+    //                 target: "http://kg.zhaodashen.cn/v1/",
+    //                 changeOrigin: true, // 是否允许跨域
+    //                 secure: false,      // 关闭SSL证书验证https协议接口需要改成true
+    //                 pathRewrite: {      // 重写路径请求
+    //                     // 移除
+    //                     // '^/remove/api' : ''
+    //                     '^/api': ''
+    //                 },
+    //             })
     //         ]
     //     },
     //     port: 3000
