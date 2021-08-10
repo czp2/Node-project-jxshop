@@ -14,7 +14,6 @@ $(function(){
 	$(".new_address").click(function(){
 		$("form[name=address_form]").show();
 		$(this).parent().addClass("cur").siblings().removeClass("cur");
-
 	}).parent().siblings().find("input").click(function(){
 		$("form[name=address_form]").hide();
 		$(this).parent().addClass("cur").siblings().removeClass("cur");
