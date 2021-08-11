@@ -18,11 +18,9 @@ $(function () {
                     <dl aid="${item.address_id}">
                         <dt>${index+1}.${item.consignee} ${item.provinceName} ${item.cityName} ${item.districtName} ${item.mobile} </dt>
                         <dd>
-                            <a href="javascript:;" class='del'>删除</a>
-                            <a href="javascript:;" class='default'>设为默认地址</a>
-                        </dd>
-                    </dl>
-                    `
+                            <a href="javascript:;" class='del'>删除</a>`
+                    if (item.is_default==0) html += ` <a href="javascript:;" class='default'>设为默认地址</a>`
+                    html += `</dd></dl>`
                 })
                 $('.address_hd').html(html)
             },
@@ -62,7 +60,7 @@ $(function () {
             },
             success: (res) => {
                 console.log(res.data);
-                // getAddressList()
+                getAddressList()
             },
             error: (err) => {},
             dataType: 'json'
@@ -77,30 +75,16 @@ $(function () {
     //点击保存
     $('.address_bd .btn').click(function (e) {
         e.preventDefault()
-        let username = $('.address_bd ul li:eq(0) .txt').val()
-        let province = $('.address_bd ul li:eq(1) select:eq(0)').val()
-        let city = $('.address_bd ul li:eq(1) select:eq(1)').val()
-        let district = $('.address_bd ul li:eq(1) select:eq(2)').val()
-        let address = $('.address_bd ul li:eq(2) .address').val()
-        let mobile = $('.address_bd ul li:eq(3) .txt').val()
-        let is_default = $('.address_bd ul li:eq(4) .check').val()
-        console.log(token, username, province, city, district, address, mobile, is_default);
+        let formData = 'token=' + token + '&' + $('.address_bd form').serialize()
+        // console.log(formData);
         $.ajax({
             async: false,
             url: "http://kg.zhaodashen.cn/v1/address/create.jsp",
             type: "post",
-            data: {
-                token,
-                username,
-                province,
-                city,
-                district,
-                address,
-                mobile,
-                is_default
-            },
+            data: formData,
             success: (res) => {
-                $('form[name="address_form"]').reset()
+                $('.address_bd form')[0].reset()
+                getAddressList()
             },
             error: (err) => {},
             dataType: 'json'

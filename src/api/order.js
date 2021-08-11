@@ -1,50 +1,76 @@
 $(function () {
     let token = localStorage.getItem('token')
-    $.ajax({
-        async: false,
-        url: "http://kg.zhaodashen.cn/v1/cart/index.jsp",
-        type: "get",
-        // headers: {},
-        data: {
-            token
-        },
-        success: (res1) => {
-            // console.log(res1.data);
-            let html = ``
-            $.each(res1.data, (index, item) => {
-                console.log(item);
-                $.ajax({
-                    async: false,
-                    url: "http://kg.zhaodashen.cn/v1/goods/detail.jsp",
-                    type: "get",
-                    data: {
-                        goodsId: item.goods_id
-                    },
-                    success: (res2) => {
-                        console.log(res2.data);
-                        html +=
-                            `<tr>
-                            <td class="col1"><a href=""><img src="http://tmp00001.zhaodashen.cn/${res2.data.goods_img}" alt="" /></a>  
-                            <strong><a href="">${item.goods_name}</a></strong></td>
-                            <td class="col2"> <p>颜色：073深红</p> <p>尺码：170/92A/S</p> </td>
-                            <td class="col3">￥<span>${item.goods_price}</span></td>
-                            <td class="col4"> 
-                                <a href="javascript:;" style="display:inline-block" class="reduce_num"></a>
-                                <input type="text" style="display:inline-block;width:20px" name="amount" value="${item.goods_number}" class="amount"/>
-                                <a href="javascript:;" style="display:inline-block" class="add_num"></a>
-                            </td>
-                            <td class="col5">￥<span>${item.goods_price*item.goods_number}</span></td>
-                            <td class="col6"><a href="">删除</a></td>
-                        </tr>
-                        `
-                    },
-                    error: (err) => {},
-                    dataType: 'json'
-                })
+    //封装 调用物流列表接口
+    function getOrderList() {
+        $.get('http://kg.zhaodashen.cn/v1/order/index.jsp', {
+            token,
+            delete: 2
+        }, res => {
+            console.log(res)
+            let orderStatus = ['未确认', '已确认', '已取消', '无效', '退货']
+            let shippingStatus = ['未发货', '已发货', '已收货', '备货中']
+            let payStatus = ['<font color=red>未付款</font>', '付款中', '<font color=green>已付款</font>']
+            let html = ''
+            let pendingPayment = rtbc = 0
+            $.each(res.data, (index, item) => {
+                let payHtml = ''
+                if (payStatus[item.pay_status] != '<font color=green>已付款</font>') {
+                    payHtml = `<a href="http://kg.zhaodashen.cn/v1/alipay/pagepay/pagepay.jsp?trade_no=${item.order_sn}&amount=${item.order_amount}">付款 |	</a>`
+                }
+                if(item.pay_status == 0) pendingPayment++
+                if(item.shipping_status != 2) rtbc++
+                html += `
+					<tr> 
+						<td>${item.order_sn}</td>
+						<td>${orderStatus[item.order_status]}</td>
+						<td>${shippingStatus[item.shipping_status]}</td>
+						<td>${payStatus[item.pay_status]}</td>
+						<td>${item.order_amount}</td>
+						<td>${item.add_time_name}</td>
+						<td>${item.consignee}</td>
+						<td>${item.province}</td>
+						<td>${item.city}</td>
+						<td>${item.district}</td>
+						<td>${item.tel}</td>
+						<td>
+							<a href="javascript:;" com="${item.com}" no="${item.no}" class="wl" >物流</a> |
+							${payHtml}
+							<a href="javascript:;" oid ="${item.order_id}" class="del">删除</a></td>
+					</tr>
+				`
             })
             $('.orders tbody').html(html)
-        },
-        error: (err) => {},
-        dataType: 'json'
+            $('.order_hd dl:eq(0) dd:eq(0)').html(`待付款（${pendingPayment}）`)
+            $('.order_hd dl:eq(0) dd:eq(1)').html(`待确认收货（${rtbc}）`)
+        }, 'json')
+    }
+    getOrderList()
+    // 查看物流
+    $('table').on('click', '.wl', function (res) {
+        let no = $(this).attr('no')
+        // console.log(no)
+        // 异步请求后期数据
+        $.get(`https://biz.trace.ickd.cn/auto/${no}?mailNo=${no}`, {}, res => {
+            console.log(res.data)
+            let html = ''
+            $.each(res.data, (index, item) => {
+                // console.log(item)
+                html += `${item.time}  ${item.context} \r\n`
+            })
+
+            alert(html)
+        }, 'json')
+    })
+    // 删除
+    $('table').on('click', '.del', function (res) {
+        let orderId = $(this).attr('oid')
+        // console.log(no)
+        // 异步请求后期数据
+        $.post(`http://kg.zhaodashen.cn/v1/order/delete.jsp`, {
+            orderId,
+            token
+        }, res => {
+            getOrderList()  
+        }, 'json')
     })
 })
