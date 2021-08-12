@@ -2,7 +2,7 @@ $(function () {
     let token = localStorage.getItem('token')
     //封装 调用物流列表接口
     function getOrderList() {
-        $.get('http://kg.zhaodashen.cn/v1/collect/index.jsp', {
+        $.get('/qfApi/collect/index.jsp', {
             token,
         }, res => {
             console.log(res.data)
@@ -28,7 +28,7 @@ $(function () {
 		// console.log(1);
 		e.preventDefault()
         let goodsId = $(this).attr('gid')
-		$.post('http://kg.zhaodashen.cn/v1/cart/create.jsp', {
+		$.post('/qfApi/cart/create.jsp', {
 			goodsId,
 			buyNum: 1,
 			token

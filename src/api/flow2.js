@@ -6,7 +6,7 @@ $(function () {
     function getAddressList() {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/index.jsp",
+            url: "/qfApi/address/index.jsp",
             type: "get",
             data: {
                 token
@@ -53,7 +53,7 @@ $(function () {
     $('.address_select').on('click', 'a.default', function () {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/default.jsp",
+            url: "/qfApi/address/default.jsp",
             type: "post",
             data: {
                 token,
@@ -71,7 +71,7 @@ $(function () {
     $('.address_select').on('click', 'a.del', function () {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/delete.jsp",
+            url: "/qfApi/address/delete.jsp",
             type: "post",
             data: {
                 token,
@@ -111,7 +111,7 @@ $(function () {
     //商品列表
     $.ajax({
         async: false,
-        url: "http://kg.zhaodashen.cn/v1/cart/index.jsp",
+        url: "/qfApi/cart/index.jsp",
         type: "get",
         // headers: {},
         data: {
@@ -128,7 +128,7 @@ $(function () {
                 //数据填充
                 $.ajax({
                     async: false,
-                    url: "http://kg.zhaodashen.cn/v1/goods/detail.jsp",
+                    url: "/qfApi/goods/detail.jsp",
                     type: "get",
                     data: {
                         goodsId: item.goods_id
@@ -185,7 +185,7 @@ $(function () {
     $('.fillin_ft a').click(function(){
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/order/create.jsp",
+            url: "/qfApi/order/create.jsp",
             type: "post",
             data: {
                 token,

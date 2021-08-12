@@ -1,7 +1,7 @@
 function getOrderList(token) {
     $.ajax({
         async: false,
-        url: "http://kg.zhaodashen.cn/v1/cart/index.jsp",
+        url: "/qfApi/cart/index.jsp",
         type: "get",
         // headers: {},
         data: {
@@ -16,7 +16,7 @@ function getOrderList(token) {
                 //数据填充
                 $.ajax({
                     async: false,
-                    url: "http://kg.zhaodashen.cn/v1/goods/detail.jsp",
+                    url: "/qfApi/goods/detail.jsp",
                     type: "get",
                     data: {
                         goodsId: item.goods_id
@@ -71,7 +71,7 @@ $(function () {
         let goods_id = $(this).parents('tr').attr('gid')
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/cart/delete.jsp",
+            url: "/qfApi/cart/delete.jsp",
             type: "post",
             data: {
                 token,
@@ -92,7 +92,7 @@ $(function () {
         let goodsId = $(this).parents('tr').attr('gid')
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/cart/update.jsp",
+            url: "/qfApi/cart/update.jsp",
             type: "post",
             data: {
                 goodsId,
@@ -114,7 +114,7 @@ $(function () {
         let goodsId = $(this).parents('tr').attr('gid')
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/cart/update.jsp",
+            url: "/qfApi/cart/update.jsp",
             type: "post",
             data: {
                 goodsId,
@@ -140,7 +140,7 @@ $(function () {
         let goodsId = $(this).parents('tr').attr('gid')
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/cart/update.jsp",
+            url: "/qfApi/cart/update.jsp",
             type: "post",
             data: {
                 goodsId,

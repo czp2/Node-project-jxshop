@@ -3,28 +3,31 @@
  * @param {any} pageno
  * @param {any} pagesize=8
  * @param {any} keywords=''
+ * @param {any} cat=''
  * @returns {any}
  */
 function getListData(pageno, pagesize = 8, keywords = '', cat = '') {
-    $.get('http://kg.zhaodashen.cn/v1/goods/index.jsp', {
+    $.get('/qfApi/goods/index.jsp', {
         pageno,
         pagesize,
         keywords,
         cat
     }, res => {
-        // console.log(res.data);
+        console.log(res.data);
         let html = ''
         $.each(res.data.list, (index, item) => {
-            html += `
-                <li>
-                    <dl>
-                        <dt><<a href="./../goods.html?gid=${item.goods_id}">><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
-                            <dd><<a href="./../goods.html?gid=${item.goods_id}">>${item.goods_name}</a></dt>
-                            <dd><strong>￥${item.market_price}</strong></dt>
-                            <dd><<a href="./../goods.html?gid=${item.goods_id}">><em>已有10人评价</em></a></dt>
-                    </dl>
-                </li>
-            `
+            if(item.goods_img){
+                html += `
+                        <li>
+                            <dl>
+                                    <dt><a href="./goods.html?gid=${item.goods_id}"></a><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
+                                    <dd><a href="./goods.html?gid=${item.goods_id}">${item.goods_name}</a></dt>
+                                    <dd><strong>￥${item.market_price}</strong></dt>
+                                    <dd><a href="./goods.html?gid=${item.goods_id}"><em>已有${item.click_count}人评价</em></a></dt>
+                            </dl>
+                        </li>
+                        `
+            }
         })
         $('.goodslist ul').html(html)
 
@@ -67,11 +70,10 @@ $(function () {
     else if (cat) getListData(1, 8, '', cat)
     else getListData(1)
     //点击搜索按钮发送请求
-    let val = ''
     $('.search_form .btn').click(function (e) {
         // console.log(this);
         e.preventDefault()
-        val = $(this).prev().val()
+        let val = $(this).prev().val()
         getListData(1, 8, val)
     })
     //点击底部分页按钮跳转

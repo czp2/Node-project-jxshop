@@ -6,7 +6,7 @@ $(function () {
         let pwd = $('input[name="password"]').val()
         let captcha = $('input[name="checkcode"]').val()
 
-        $.post('http://kg.zhaodashen.cn/v1/public/login.jsp', {
+        $.post('/qfApi/public/login.jsp', {
             uname,
             pwd,
             captcha

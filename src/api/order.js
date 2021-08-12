@@ -2,7 +2,7 @@ $(function () {
     let token = localStorage.getItem('token')
     //封装 调用物流列表接口
     function getOrderList() {
-        $.get('http://kg.zhaodashen.cn/v1/order/index.jsp', {
+        $.get('/qfApi/order/index.jsp', {
             token,
             delete: 2
         }, res => {
@@ -15,7 +15,7 @@ $(function () {
             $.each(res.data, (index, item) => {
                 let payHtml = ''
                 if (payStatus[item.pay_status] != '<font color=green>已付款</font>') {
-                    payHtml = `<a href="http://kg.zhaodashen.cn/v1/alipay/pagepay/pagepay.jsp?trade_no=${item.order_sn}&amount=${item.order_amount}">付款 |	</a>`
+                    payHtml = `<a href="/qfApi/alipay/pagepay/pagepay.jsp?trade_no=${item.order_sn}&amount=${item.order_amount}">付款 |	</a>`
                 }
                 if(item.pay_status == 0) pendingPayment++
                 if(item.shipping_status != 2) rtbc++
@@ -66,7 +66,7 @@ $(function () {
         let orderId = $(this).attr('oid')
         // console.log(no)
         // 异步请求后期数据
-        $.post(`http://kg.zhaodashen.cn/v1/order/delete.jsp`, {
+        $.post(`/qfApi/order/delete.jsp`, {
             orderId,
             token
         }, res => {

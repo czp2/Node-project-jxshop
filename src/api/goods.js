@@ -14,7 +14,7 @@ $(function () {
 	function checkFolk() {
 		$.ajax({
 			async: true,
-			url: 'http://kg.zhaodashen.cn/v1/collect/find.jsp',
+			url: '/qfApi/collect/find.jsp',
 			type: 'get',
 			data: {
 				goodsId,
@@ -32,11 +32,15 @@ $(function () {
 		})
 	}
 
+	/**
+	 * Description
+	 * @returns {any}
+	 */
 	function getCommentList() {
 		//获取所有评论
 		$.ajax({
 			async: true,
-			url: 'http://kg.zhaodashen.cn/v1/comment/index.jsp',
+			url: '/qfApi/comment/index.jsp',
 			type: 'get',
 			data: {
 				goodsId
@@ -183,18 +187,18 @@ $(function () {
 	}
 
 	//调用商品详情接口
-	$.get('http://kg.zhaodashen.cn/v1/goods/detail.jsp', {
+	$.get('/qfApi/goods/detail.jsp', {
 		goodsId
 	}, res1 => {
-		console.log('http://kg.zhaodashen.cn/v1/goods/detail.jsp,返回值：', res1.data);
+		console.log('/qfApi/goods/detail.jsp,返回值：', res1.data);
 		let r1 = res1.data;
 		//类别id
 		let cat = r1.cat_id;
 		//调用商品属性接口（暂时没用）
-		$.post('http://kg.zhaodashen.cn/v1/category/attr.jsp', {
+		$.post('/qfApi/category/attr.jsp', {
 			cat
 		}, res2 => {
-			console.log('http://kg.zhaodashen.cn/v1/category/attr.jsp,返回值：', res2.data);
+			console.log('/qfApi/category/attr.jsp,返回值：', res2.data);
 			let html = `
 				<h3><strong>${r1.goods_name}</strong></h3>
 				
@@ -313,7 +317,7 @@ $(function () {
 		}, 'json')
 
 		//调用商品所有分类接口
-		$.get('http://kg.zhaodashen.cn/v1/category/index.jsp', {}, res => {
+		$.get('/qfApi/category/index.jsp', {}, res => {
 			$.each(res.data, function (index, item) {
 				// console.log(index,item);
 				//判断类别id是否一致
@@ -346,7 +350,7 @@ $(function () {
 	$('.summary').on('click', '.add_btn', function (e) {
 		// console.log(1);
 		e.preventDefault()
-		$.post('http://kg.zhaodashen.cn/v1/cart/create.jsp', {
+		$.post('/qfApi/cart/create.jsp', {
 			goodsId,
 			buyNum: 2,
 			token
@@ -360,12 +364,12 @@ $(function () {
 	$('.summary').on('click', '.folk', function (e) {
 		// console.log(1);
 		e.preventDefault()
-		$.post('http://kg.zhaodashen.cn/v1/collect/create.jsp', {
+		$.post('/qfApi/collect/create.jsp', {
 			goodsId,
 			token
 		}, res => {
 			// console.log(res.data);
-			if(res.meta.state==201) checkFolk()
+			if (res.meta.state == 201) checkFolk()
 			// if (confirm('是否前往我的收藏')) location.href = './../flow1.html'
 		}, 'json')
 	})
@@ -380,7 +384,7 @@ $(function () {
 		console.log(content);
 		$.ajax({
 			async: true,
-			url: 'http://kg.zhaodashen.cn/v1/comment/create.jsp',
+			url: '/qfApi/comment/create.jsp',
 			type: 'get',
 			data: {
 				star,

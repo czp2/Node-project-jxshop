@@ -13,7 +13,7 @@ $(function () {
             if (!/^1\d{10}$/.test(mobile)) return alert('手机号有误')
             var result = captchaObj.getValidate();
 			if (!result) return alert('请完成验证');
-            $.post('http://kg.zhaodashen.cn/v1/public/sendMsg.jsp', {
+            $.post('/qfApi/public/sendMsg.jsp', {
                 mobile,
             }, res => {
                 alert(res.meta.msg)
@@ -45,7 +45,7 @@ $(function () {
             let code = $('.login_form input').eq(1).val()
             let pwd = $('.login_form input').eq(2).val()
 			if (!/^\d{4}$/.test(code)) return alert('验证码有误')
-            $.post('http://kg.zhaodashen.cn/v1/public/reg2.jsp', {
+            $.post('/qfApi/public/reg2.jsp', {
                 mobile,
                 pwd,
                 code

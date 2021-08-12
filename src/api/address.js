@@ -4,7 +4,7 @@ $(function () {
     function getAddressList() {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/index.jsp",
+            url: "/qfApi/address/index.jsp",
             type: "get",
             data: {
                 token,
@@ -33,7 +33,7 @@ $(function () {
     $('.address_hd').on('click', 'dl dd a.del', function () {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/delete.jsp",
+            url: "/qfApi/address/delete.jsp",
             type: "post",
             data: {
                 token,
@@ -52,7 +52,7 @@ $(function () {
         console.log($(this));
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/default.jsp",
+            url: "/qfApi/address/default.jsp",
             type: "post",
             data: {
                 token,
@@ -79,7 +79,7 @@ $(function () {
         // console.log(formData);
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/create.jsp",
+            url: "/qfApi/address/create.jsp",
             type: "post",
             data: formData,
             success: (res) => {
@@ -92,7 +92,7 @@ $(function () {
     })
     // 省
     $('.address_bd ul li:eq(1) select:eq(0)').html('<option value="">请求中...</option>')
-    $.get('http://kg.zhaodashen.cn/v1/area/index.jsp', {
+    $.get('/qfApi/area/index.jsp', {
         type: '省',
         pid: 1
     }, res => {
@@ -111,7 +111,7 @@ $(function () {
         let val = $(this).val()
         // console.log(val)
         // 2. 继续发送异步请求
-        $.get('http://kg.zhaodashen.cn/v1/area/index.jsp', {
+        $.get('/qfApi/area/index.jsp', {
             type: '市',
             pid: val
         }, res => {
@@ -131,7 +131,7 @@ $(function () {
         let val = $(this).val()
         // console.log(val)
         // 2. 继续发送异步请求
-        $.get('http://kg.zhaodashen.cn/v1/area/index.jsp', {
+        $.get('/qfApi/area/index.jsp', {
             type: '区/县',
             pid: val
         }, res => {
