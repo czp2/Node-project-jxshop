@@ -3,7 +3,15 @@
 @作者：diamondwang
 @时间：2013年11月7日
 */
-
+div.page {
+    width: 800px;
+    height: 40px;
+    border: solid 1px black;
+    margin: 30px auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 /*左侧内容css*/
