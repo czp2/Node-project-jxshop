@@ -18,10 +18,10 @@ function getListData(pageno, pagesize = 8, keywords = '', cat = '') {
             html += `
                 <li>
                     <dl>
-                        <dt><a href=""><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
-                            <dd><a href="">${item.goods_name}</a></dt>
+                        <dt><<a href="./../goods.html?gid=${item.goods_id}">><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
+                            <dd><<a href="./../goods.html?gid=${item.goods_id}">>${item.goods_name}</a></dt>
                             <dd><strong>￥${item.market_price}</strong></dt>
-                            <dd><a href=""><em>已有10人评价</em></a></dt>
+                            <dd><<a href="./../goods.html?gid=${item.goods_id}">><em>已有10人评价</em></a></dt>
                     </dl>
                 </li>
             `

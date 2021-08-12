@@ -1,24 +1,28 @@
 $(function () {
     //猜你喜欢
     $('.floor1 .goodslist div:first ul').html('')
-    $.get('http://kg.zhaodashen.cn//v1/goods/like.jsp', {}, res => {
+    $.get('http://kg.zhaodashen.cn/v1/goods/like.jsp', {}, res => {
         // console.log(res);
         let html = ''
         $.each(res.data, (index, item) => {
-            // console.log(item);
+            $('.floor1 .goodslist div:first ul').html('<img src="./../imgs/loading.gif" width="150px" style="margin-right:20px"/>'.repeat(10))
+            console.log(item);
             //拼接
             html += `
             <li>
                 <dl>
-                    <dt><a href=""><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
-                    <dd><a href="">${item.goods_name}</a></dd>
+                    <dt><a href="./../goods.html?gid=${item.goods_id}"><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
+                    <dd><a href="./../goods.html?gid=${item.goods_id}">${item.goods_name}</a></dd>
                     <dd><span>售价：</span> <strong>￥${item.market_price}</strong></dd>
                 </dl>
             </li>
             `
         })
         //覆盖
-        $('.floor1 .goodslist div:first ul').html(html)
+        setTimeout(() => {
+            $('.floor1 .goodslist div:first ul').html(html)
+        }, 1000)
+
     }, 'json')
 
     //热卖商品等
@@ -32,31 +36,33 @@ $(function () {
         let spanIndex = $(this).index();
         getGoodList(goodsTypes[$(this).text()], spanIndex)
     })
-
     /**
-     * Description
+     * Description 热门、推荐···
      * @param {any} type
      * @param {any} spanIndex
      * @returns {any}
      */
     function getGoodList(type, spanIndex) {
-        $.get('http://kg.zhaodashen.cn//v1/goods/index.jsp', {
+        $.get('http://kg.zhaodashen.cn/v1/goods/index.jsp', {
             type,
         }, res => {
+            $(`.guide_wrap div:eq(${spanIndex}) ul`).html('<img src="./../imgs/loading.gif" width="150px" style="margin-right:20px"/>'.repeat(5))
             let html = ``
             $.each(res.data.list, (index, item) => {
                 html += `
 					<li>
 						<dl>
-							<dt><a href="./goods.html?id=${item.goods_id}"><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
-							<dd><a href="./goods.html?id=${item.goods_id}">${item.goods_name}</a></dd>
+							<dt><a href="./../goods.html?gid=${item.goods_id}"><img src="http://tmp00001.zhaodashen.cn/${item.goods_img}" alt="" /></a></dt>
+							<dd><a href="./../goods.html?gid=${item.goods_id}">${item.goods_name}</a></dd>
 							<dd><span>售价：</span><strong> ￥${item.shop_price}</strong></dd>
 						</dl>
 					</li>
 				`
             })
-            // 放到页面中   
-            $(`.guide_wrap div:eq(${spanIndex}) ul`).html(html)
+            // 放到页面中
+            setTimeout(() => {
+                $(`.guide_wrap div:eq(${spanIndex}) ul`).html(html)
+            }, 1000)
         }, 'json')
     }
 

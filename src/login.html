@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="./css/header.css" type="text/css">
 	<link rel="stylesheet" href="./css/login.css" type="text/css">
 	<link rel="stylesheet" href="./css/footer.css" type="text/css">
+
+	<script src="./js/jquery-1.8.3.min.js"></script>
+	<script src="./api/login.js"></script>
 </head>
 <body>
 	<!-- 顶部导航 start -->
@@ -62,12 +65,12 @@
 						<li class="checkcode">
 							<label for="">验证码：</label>
 							<input type="text"  name="checkcode" />
-							<img src="./imgs/checkcode1.jpg" alt="" />
+							<img src="http://kg.zhaodashen.cn/v1/public/captcha.jsp" alt="" />
 							<span>看不清？<a href="">换一张</a></span>
 						</li>
 						<li>
 							<label for="">&nbsp;</label>
-							<input type="checkbox" class="chb"  /> 保存登录信息
+							<input type="checkbox" class="chb"  value="0" onclick="value = value==0?1:0"/> 保存登录信息
 						</li>
 						<li>
 							<label for="">&nbsp;</label>
@@ -95,6 +98,7 @@
 				<p>现在免费注册成为商城用户，便能立刻享受便宜又放心的购物乐趣，心动不如行动，赶紧加入吧!</p>
 
 				<a href="regist.html" class="reg_btn">免费注册 >></a>
+				<a href="quick_regist.html" class="reg_btn" style="margin-top: 10px;">快速注册 >></a>
 			</div>
 
 		</div>
