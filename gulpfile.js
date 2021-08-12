@@ -150,29 +150,29 @@ const server = require('browser-sync').create();
 const watch = require('gulp-watch');
 const {createProxyMiddleware} = require('http-proxy-middleware');
 gulp.task('serve', function () {
-    server.init({
-        server:'./src',
-        port: 3000
-    })
     // server.init({
-    //     server: {
-    //         baseDir: './src',
-    //         middleware: [
-    //             createProxyMiddleware('/api', {
-    //                 // 目标服务器网址
-    //                 target: "http://kg.zhaodashen.cn/v1/",
-    //                 changeOrigin: true, // 是否允许跨域
-    //                 secure: false,      // 关闭SSL证书验证https协议接口需要改成true
-    //                 pathRewrite: {      // 重写路径请求
-    //                     // 移除
-    //                     // '^/remove/api' : ''
-    //                     '^/api': ''
-    //                 },
-    //             })
-    //         ]
-    //     },
+    //     server:'./src',
     //     port: 3000
     // })
+    server.init({
+        server: {
+            baseDir: './src',
+            middleware: [
+                createProxyMiddleware('/qfApi', {
+                    // 目标服务器网址
+                    target: "http://kg.zhaodashen.cn/v1",
+                    changeOrigin: true, // 是否允许跨域
+                    secure: false,      // 关闭SSL证书验证https协议接口需要改成true
+                    pathRewrite: {      // 重写路径请求
+                        // 移除
+                        // '^/remove/api' : ''
+                        '^/qfApi': ''
+                    },
+                })
+            ]
+        },
+        port: 3000
+    })
 
     watch('src/*.html', function () {
         console.log('html change')

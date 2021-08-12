@@ -15,8 +15,10 @@
 	<link rel="stylesheet" href="./css/footer.css" type="text/css">
 
 	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./api/utils.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script type="text/javascript" src="./js/home.js"></script>
+	
 	<script type="text/javascript" src="./api/order.js"></script>
 </head>
 
@@ -33,7 +35,7 @@
 						<script type="text/javascript" src="./api/public-login.js"></script>
 					</li>
 					<li class="line">|</li>
-					<li>我的订单</li>
+					<li><a href="./order.html"></a>我的订单</a></li>
 					<li class="line">|</li>
 					<li>客户服务</li>
 
@@ -87,9 +89,9 @@
 						<div class="uclist mt10">
 							<ul class="list1 fl">
 								<li><a href="">用户信息></a></li>
-								<li><a href="">我的订单></a></li>
+								<li><a href="./order.html">我的订单></a></li>
 								<li><a href="">收货地址></a></li>
-								<li><a href="">我的收藏></a></li>
+								<li><a href="./folk.html">我的收藏></a></li>
 							</ul>
 
 							<ul class="fl">
@@ -415,7 +417,7 @@
 
 			<div class="navitems fl">
 				<ul class="fl">
-					<li class="current"><a href="">首页</a></li>
+					<li class="current"><a href="./index.html">首页</a></li>
 					<li><a href="">电脑频道</a></li>
 					<li><a href="">家用电器</a></li>
 					<li><a href="">品牌大全</a></li>
@@ -444,8 +446,8 @@
 			<div class="menu_wrap">
 				<dl>
 					<dt>订单中心 <b></b></dt>
-					<dd class="cur"><b>.</b><a href="">我的订单</a></dd>
-					<dd><b>.</b><a href="">我的关注</a></dd>
+					<dd class="cur"><b>.</b><a href="./order.html">我的订单</a></dd>
+					<dd><b>.</b><a href="">我的关注</a></dd><dd><b>.</b><a href="./folk.html">我的收藏</a></dd>
 					<dd><b>.</b><a href="">浏览历史</a></dd>
 					<dd><b>.</b><a href="">我的团购</a></dd>
 				</dl>
@@ -456,7 +458,7 @@
 					<dd><b>.</b><a href="">账户余额</a></dd>
 					<dd><b>.</b><a href="">消费记录</a></dd>
 					<dd><b>.</b><a href="">我的积分</a></dd>
-					<dd><b>.</b><a href="">收货地址</a></dd>
+					<dd><b>.</b><a href="./address.html">收货地址</a></dd>
 				</dl>
 
 				<dl>
@@ -487,51 +489,57 @@
 				</dl>
 			</div>
 
-			<hr />
+			<!-- <hr />
 			<a href="列表" style="font-size: 30px;">所有订单（接口参数2）</a>&nbsp;&nbsp;&nbsp;
 			<a href="回收站" style="font-size: 30px;">回收站订单（接口参数1）</a>
-			<hr />
+			<hr /> -->
 
 			<div class="order_bd mt10">
 				<table class="orders">
 					<thead>
 						<tr>
-							<th width="20%">订单商品</th>
-							<th width="20%">商品信息</th>
-							<th width="10%">收货人</th>
-							<th width="10%">单价</th>
-							<th width="10%">数量</th>
-							<th width="10%">小计</th>
+							<th width="10%">订单号</th>
+							<th width="5%">订单状态</th>
+							<th width="5%">配送状态</th>
+							<th width="5%">支付状态</th>
+							<th width="5%">订单金额</th>
+							<th width="10%">下单时间</th>
+							<th width="5%">收货人</th>
+							<th width="5%">省份</th>
+							<th width="5%">市区</th>
+							<th width="5%">县</th>
+							<!-- <th width="10%">收获地址</th> -->
+							<th width="5%">联系电话</th>
 							<th width="10%">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 						<!-- <tr>
 							<td><a href="">852592106</a></td>
-							<td><a href=""><img src="./imgs/order1.jpg" alt="" /></a></td>
+							<td><a href=""><img src="../images/order1.jpg" alt="" /></a></td>
 							<td>神龙教主</td>
 							<td>￥35.00 货到付款</td>
 							<td>2013-11-12 16:28:14</td>
 							<td>已取消</td>
-							<td><a href="" com="快递公司" no="快递单号">查看物流</a> | <a href="">删除</a></td>
+							<td><a href="" com="快递公司" no="快递单号" >查看物流</a> | <a href="">删除</a></td>
 						</tr>
 						<tr>
 							<td><a href="">852571653</a></td>
-							<td><a href=""><img src="./imgs/order2.jpg" alt="" /></a></td>
+							<td><a href=""><img src="../images/order2.jpg" alt="" /></a></td>
 							<td>神龙教主</td>
 							<td>￥35.00 在线支付</td>
 							<td>2013-11-13 19:28:14</td>
 							<td>已完成</td>
-							<td><a href="" com="快递公司" no="快递单号">查看物流</a> | <a href="">删除</a></td>
+							<td><a href="" com="快递公司" no="快递单号" >查看物流</a> | <a href="">删除</a></td>
 						</tr>
 						<tr>
 							<td><a href="">471196680</a></td>
-							<td><a href=""><img src="./imgs/order2.jpg" alt="" /></a></td>
+							<td><a href=""><img src="../images/order2.jpg" alt="" /></a></td>
 							<td>神龙教主</td>
 							<td>￥169.00 货到付款</td>
 							<td>2013-02-20 23:00:00</td>
 							<td>已完成</td>
-							<td><a href="" com="快递公司" no="快递单号">查看物流</a> | <a href="">删除</a></td>
+							<td><a href="" com="快递公司" no="快递单号" >查看物流</a> | <a href="">删除</a></td>
 						</tr> -->
 					</tbody>
 				</table>

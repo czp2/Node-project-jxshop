@@ -11,7 +11,7 @@ $(function () {
             alert('两次密码不一致')
             return
         }
-        $.post('http://kg.zhaodashen.cn/v1/public/reg.jsp', {
+        $.post('/qfApi/public/reg.jsp', {
             uname,
             pwd,
             captcha

@@ -1,56 +1,59 @@
 $(function () {
     //获取token
-    let token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
 
-    //地址相关
-    $.ajax({
-        async: false,
-        url: "http://kg.zhaodashen.cn/v1/address/index.jsp",
-        type: "get",
-        data: {
-            token
-        },
-        success: (res) => {
-            console.log(res.data);
+    //封装 调用地址接口
+    function getAddressList() {
+        $.ajax({
+            async: false,
+            url: "/qfApi/address/index.jsp",
+            type: "get",
+            data: {
+                token
+            },
+            success: (res) => {
+                console.log(res.data);
 
-            let html = ``
-            $('.address_select ul').html(html)
-            $.each(res.data, (index, item) => {
-                if (item.is_default == 1) {
-                    $('.address_info').html(`
-                        <p>${item.consignee}  ${item.mobile} </p>
-                        <p>${item.provinceName} ${item.cityName} ${item.districtName} ${item.address}</p>
-                    `)
-                    html += `
-                        <li class="cur" aid="${item.address_id}">
-							<input type="radio" name="address" checked="checked" />${item.consignee} ${item.provinceName} ${item.cityName} ${item.districtName} ${item.address} ${item.mobile}
-							<a class="default" href="javascript:;">设为默认地址</a>
-							<a class="edit" href="./../address.html">编辑</a>
-							<a class="del" href="javascript:;">删除</a>
-						</li>
+                let html = ``
+                $('.address_select ul').html(html)
+                $.each(res.data, (index, item) => {
+                    if (item.is_default == 1) {
+                        $('.address_info').html(`
+                            <p>${item.consignee}  ${item.mobile} </p>
+                            <p>${item.provinceName} ${item.cityName} ${item.districtName} ${item.address}</p>
+                        `)
+                        html += `
+                            <li class="cur" aid="${item.address_id}">
+                                <input type="radio" name="address" checked="checked" />${item.consignee} ${item.provinceName} ${item.cityName} ${item.districtName} ${item.address} ${item.mobile}
+                                <a class="default" href="javascript:;">设为默认地址</a>
+                                <a class="edit" href="./../address.html">编辑</a>
+                                <a class="del" href="javascript:;">删除</a>
+                            </li>
+                            `
+                    } else {
+                        html += `
+                        <li aid="${item.address_id}">
+                            <input type="radio" name="address"/>${item.consignee} ${item.provinceName} ${item.cityName} ${item.districtName} ${item.address} ${item.mobile}
+                            <a class="default" href="javascript:;">设为默认地址</a>
+                            <a class="edit" href="./../address.html">编辑</a>
+                            <a class="del" href="javascript:;">删除</a>
+                        </li>
                         `
-                } else {
-                    html += `
-                    <li aid="${item.address_id}">
-                        <input type="radio" name="address"/>${item.consignee} ${item.provinceName} ${item.cityName} ${item.districtName} ${item.address} ${item.mobile}
-                        <a class="default" href="javascript:;">设为默认地址</a>
-						<a class="edit" href="./../address.html">编辑</a>
-						<a class="del" href="javascript:;">删除</a>
-                    </li>
-                    `
-                }
-            })
-            html += `<li><input type="radio" name="address" class="new_address"  onclick="location.href='./../address.html'"/>使用新地址</li>`
-            $('.address_select>ul').html(html)
-        },
-        error: (err) => {},
-        dataType: 'json'
-    })
+                    }
+                })
+                html += `<li><input type="radio" name="address" class="new_address"  onclick="location.href='./../address.html'"/>使用新地址</li>`
+                $('.address_select>ul').html(html)
+            },
+            error: (err) => {},
+            dataType: 'json'
+        })
+    }
+    getAddressList()
     //设置为默认地址
     $('.address_select').on('click', 'a.default', function () {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/default.jsp",
+            url: "/qfApi/address/default.jsp",
             type: "post",
             data: {
                 token,
@@ -58,6 +61,7 @@ $(function () {
             },
             success: (res) => {
                 console.log(res.data);
+                getAddressList()
             },
             error: (err) => {},
             dataType: 'json'
@@ -67,7 +71,7 @@ $(function () {
     $('.address_select').on('click', 'a.del', function () {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/delete.jsp",
+            url: "/qfApi/address/delete.jsp",
             type: "post",
             data: {
                 token,
@@ -75,6 +79,7 @@ $(function () {
             },
             success: (res) => {
                 console.log(res.data);
+                getAddressList()
             },
             error: (err) => {},
             dataType: 'json'
@@ -106,7 +111,7 @@ $(function () {
     //商品列表
     $.ajax({
         async: false,
-        url: "http://kg.zhaodashen.cn/v1/cart/index.jsp",
+        url: "/qfApi/cart/index.jsp",
         type: "get",
         // headers: {},
         data: {
@@ -123,7 +128,7 @@ $(function () {
                 //数据填充
                 $.ajax({
                     async: false,
-                    url: "http://kg.zhaodashen.cn/v1/goods/detail.jsp",
+                    url: "/qfApi/goods/detail.jsp",
                     type: "get",
                     data: {
                         goodsId: item.goods_id
@@ -175,5 +180,27 @@ $(function () {
         },
         error: (err) => {},
         dataType: 'json'
+    })
+
+    $('.fillin_ft a').click(function(){
+        $.ajax({
+            async: false,
+            url: "/qfApi/order/create.jsp",
+            type: "post",
+            data: {
+                token,
+            },
+            success: (res) => {
+                console.log(res.data);
+                if(res.meta.state == 201){
+                    alert('订单创建成功')
+                    setTimeout(()=>{
+                        location.href = `./../flow3.html?sn=${res.data.order_sn}&price=${res.data.total_price}`
+                    },500)
+                }
+            },
+            error: (err) => {},
+            dataType: 'json'
+        })
     })
 })

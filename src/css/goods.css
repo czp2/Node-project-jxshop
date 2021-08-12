@@ -41,6 +41,10 @@
 .goodsinfo li.star3 strong{background-position: -139px -239px;}
 .goodsinfo li.star2 strong{background-position: -154px -239px;}
 .goodsinfo li.star1 strong{background-position: -169px -239px;}
+.goodsinfo input.folk{display: block; border: none; width: 50px; height: 50px; background: url("../imgs/folk_n.png") no-repeat center/cover; color:white; font-size: 10px; cursor: pointer;margin-left: 80%;}
+/* .goodsinfo input.folk_n{ background: url("../imgs/folk_n.png") no-repeat 0 0/cover; } */
+.goodsinfo input.folk_y{ background: url("../imgs/folk_y.png") no-repeat 0 0/cover;}
+
 
 /*选择购买选项*/
 .choose{width: 625px; border-top: 1px dotted #efefef; margin-top: 10px; padding-top:10px;}

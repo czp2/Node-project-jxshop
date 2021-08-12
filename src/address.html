@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="./css/footer.css" type="text/css">
 
 	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./api/utils.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script type="text/javascript" src="./js/home.js"></script>
 	<script type="text/javascript" src="./api/address.js"></script>
@@ -29,7 +30,7 @@
 					<li>						<script type="text/javascript" src="./api/public-login.js"></script>
 </li>
 					<li class="line">|</li>
-					<li>我的订单</li>
+					<li><a href="./order.html">我的订单</a></li>
 					<li class="line">|</li>
 					<li>客户服务</li>
 
@@ -83,9 +84,9 @@
 						<div class="uclist mt10">
 							<ul class="list1 fl">
 								<li><a href="">用户信息></a></li>
-								<li><a href="">我的订单></a></li>
+								<li><a href="./order.html">我的订单></a></li>
 								<li><a href="">收货地址></a></li>
-								<li><a href="">我的收藏></a></li>
+								<li><a href="./folk.html">我的收藏></a></li>
 							</ul>
 
 							<ul class="fl">
@@ -409,7 +410,7 @@
 
 			<div class="navitems fl">
 				<ul class="fl">
-					<li class="current"><a href="">首页</a></li>
+					<li class="current"><a href="./index.html">首页</a></li>
 					<li><a href="">电脑频道</a></li>
 					<li><a href="">家用电器</a></li>
 					<li><a href="">品牌大全</a></li>
@@ -438,8 +439,8 @@
 			<div class="menu_wrap">
 				<dl>
 					<dt>订单中心 <b></b></dt>
-					<dd><b>.</b><a href="">我的订单</a></dd>
-					<dd><b>.</b><a href="">我的关注</a></dd>
+					<dd><b>.</b><a href="./order.html">我的订单</a></dd>
+					<dd><b>.</b><a href="">我的关注</a></dd><dd><b>.</b><a href="./folk.html">我的收藏</a></dd>
 					<dd><b>.</b><a href="">浏览历史</a></dd>
 					<dd><b>.</b><a href="">我的团购</a></dd>
 				</dl>
@@ -450,7 +451,7 @@
 					<dd><b>.</b><a href="">账户余额</a></dd>
 					<dd><b>.</b><a href="">消费记录</a></dd>
 					<dd><b>.</b><a href="">我的积分</a></dd>
-					<dd><b>.</b><a href="">收货地址</a></dd>
+					<dd><b>.</b><a href="./address.html">收货地址</a></dd>
 				</dl>
 
 				<dl>
@@ -490,11 +491,11 @@
 						<ul>
 							<li>
 								<label for=""><span>*</span>收 货 人：</label>
-								<input type="text" name="" class="txt" />
+								<input type="text" name="username" class="txt" />
 							</li>
 							<li>
 								<label for=""><span>*</span>所在地区：</label>
-								<select name="" id="">
+								<select name="province" id="">
 									<!-- <option >请选择</option>
 									<option >北京</option>
 									<option >上海</option>
@@ -503,7 +504,7 @@
 									<option >武汉</option> -->
 								</select>
 
-								<select name="" id="">
+								<select name="city" id="">
 									<!-- <option >请选择</option>
 									<option >朝阳区</option>
 									<option >东城区</option>
@@ -512,7 +513,7 @@
 									<option >昌平区</option> -->
 								</select>
 
-								<select name="" id="">
+								<select name="district" id="">
 									<!-- <option >请选择</option>
 									<option >西二旗</option>
 									<option >西三旗</option>
@@ -521,15 +522,15 @@
 							</li>
 							<li>
 								<label for=""><span>*</span>详细地址：</label>
-								<input type="text" name="" class="txt address"  />
+								<input type="text" name="address" class="txt address"  />
 							</li>
 							<li>
 								<label for=""><span>*</span>手机号码：</label>
-								<input type="text" name="" class="txt" />
+								<input type="text" name="mobile" class="txt" />
 							</li>
 							<li>
 								<label for="">&nbsp;</label>
-								<input type="checkbox" name="" class="check" />设为默认地址
+								<input type="checkbox" name="is_default" class="check" />设为默认地址
 							</li>
 							<li>
 								<label for="">&nbsp;</label>

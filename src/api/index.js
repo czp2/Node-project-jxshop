@@ -1,7 +1,7 @@
 $(function () {
     //猜你喜欢
     $('.floor1 .goodslist div:first ul').html('')
-    $.get('http://kg.zhaodashen.cn/v1/goods/like.jsp', {}, res => {
+    $.get('/qfApi/goods/like.jsp', {}, res => {
         // console.log(res);
         let html = ''
         $.each(res.data, (index, item) => {
@@ -43,7 +43,7 @@ $(function () {
      * @returns {any}
      */
     function getGoodList(type, spanIndex) {
-        $.get('http://kg.zhaodashen.cn/v1/goods/index.jsp', {
+        $.get('/qfApi/goods/index.jsp', {
             type,
         }, res => {
             $(`.guide_wrap div:eq(${spanIndex}) ul`).html('<img src="./../imgs/loading.gif" width="150px" style="margin-right:20px"/>'.repeat(5))
@@ -68,7 +68,7 @@ $(function () {
 
     //商品左侧列表
     $('.category .cat_bd').html('')
-    $.get('http://kg.zhaodashen.cn/v1/category/index.jsp', {}, res => {
+    $.get('/qfApi/category/index.jsp', {}, res => {
         // console.log(res.data);
         let html = ``
         $.each(res.data, (index, menu) => {

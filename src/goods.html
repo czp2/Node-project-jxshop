@@ -17,11 +17,12 @@
 	<link rel="stylesheet" href="./css/jqzoom.css" type="text/css">
 
 	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./api/utils.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script type="text/javascript" src="./js/goods.js"></script>
 	<script type="text/javascript" src="./js/jqzoom-core.js"></script>
 	<script type="text/javascript" src="./api/goods.js"></script>
-	<script type="text/javascript" src="./api/utils.js"></script>
+	
 
 	<!-- jqzoom 效果 -->
 	<script type="text/javascript">
@@ -52,7 +53,7 @@
 						<script type="text/javascript" src="./api/public-login.js"></script>
 					</li>
 					<li class="line">|</li>
-					<li>我的订单</li>
+					<li><a href="./order.html">我的订单</a></li>
 					<li class="line">|</li>
 					<li>客户服务</li>
 
@@ -106,9 +107,9 @@
 						<div class="uclist mt10">
 							<ul class="list1 fl">
 								<li><a href="">用户信息></a></li>
-								<li><a href="">我的订单></a></li>
+								<li><a href="./order.html">我的订单></a></li>
 								<li><a href="">收货地址></a></li>
-								<li><a href="">我的收藏></a></li>
+								<li><a href="./folk.html">我的收藏></a></li>
 							</ul>
 
 							<ul class="fl">
@@ -433,7 +434,7 @@
 
 			<div class="navitems fl">
 				<ul class="fl">
-					<li class="current"><a href="">首页</a></li>
+					<li class="current"><a href="./index.html">首页</a></li>
 					<li><a href="">电脑频道</a></li>
 					<li><a href="">家用电器</a></li>
 					<li><a href="">品牌大全</a></li>
@@ -810,118 +811,9 @@
 							</div>
 						</div>
 
-						<div class="comment_items mt10">
-							<div class="user_pic">
-								<dl>
-									<dt><a href=""><img src="./imgs/user1.gif" alt="" /></a></dt>
-									<dd><a href="">乖乖</a></dd>
-								</dl>
-							</div>
-							<div class="item">
-								<div class="title">
-									<span>2013-03-11 22:18</span>
-									<strong class="star star5"></strong> <!-- star5表示5星级 start4表示4星级，以此类推 -->
-								</div>
-								<div class="comment_content">
-									<dl>
-										<dt>心得：</dt>
-										<dd>东西挺好，挺满意的！</dd>
-									</dl>
-									<dl>
-										<dt>优点：</dt>
-										<dd>反应速度开，散热性能好</dd>
-									</dl>
-									<dl>
-										<dt>不足：</dt>
-										<dd>暂时还没发现缺点哦！</dd>
-									</dl>
-									<dl>
-										<dt>购买日期：</dt>
-										<dd>2013-11-24</dd>
-									</dl>
-								</div>
-								<div class="btns">
-									<a href="" class="reply">回复(0)</a>
-									<a href="" class="useful">有用(0)</a>
-								</div>
-							</div>
-							<div class="cornor"></div>
-						</div>
-
-						<div class="comment_items mt10">
-							<div class="user_pic">
-								<dl>
-									<dt><a href=""><img src="./imgs/user2.jpg" alt="" /></a></dt>
-									<dd><a href="">小宝贝</a></dd>
-								</dl>
-							</div>
-							<div class="item">
-								<div class="title">
-									<span>2013-10-01 14:10</span>
-									<strong class="star star4"></strong> <!-- star5表示5星级 start4表示4星级，以此类推 -->
-								</div>
-								<div class="comment_content">
-									<dl>
-										<dt>心得：</dt>
-										<dd>外观漂亮同，还在使用过程中。</dd>
-									</dl>
-									<dl>
-										<dt>型号：</dt>
-										<dd>i5 8G内存版</dd>
-									</dl>
-									<dl>
-										<dt>购买日期：</dt>
-										<dd>2013-11-20</dd>
-									</dl>
-								</div>
-								<div class="btns">
-									<a href="" class="reply">回复(0)</a>
-									<a href="" class="useful">有用(0)</a>
-								</div>
-							</div>
-							<div class="cornor"></div>
-						</div>
-
-						<div class="comment_items mt10">
-							<div class="user_pic">
-								<dl>
-									<dt><a href=""><img src="./imgs/user3.jpg" alt="" /></a></dt>
-									<dd><a href="">天使</a></dd>
-								</dl>
-							</div>
-							<div class="item">
-								<div class="title">
-									<span>2013-03-11 22:18</span>
-									<strong class="star star5"></strong> <!-- star5表示5星级 start4表示4星级，以此类推 -->
-								</div>
-								<div class="comment_content">
-									<dl>
-										<dt>心得：</dt>
-										<dd>挺好的，物超所值，速度挺好，WIN8用起来也不错。</dd>
-									</dl>
-									<dl>
-										<dt>优点：</dt>
-										<dd>散热很好，配置不错</dd>
-									</dl>
-									<dl>
-										<dt>不足：</dt>
-										<dd>暂时还没发现缺点哦！</dd>
-									</dl>
-									<dl>
-										<dt>购买日期：</dt>
-										<dd>2013-11-24</dd>
-									</dl>
-								</div>
-								<div class="btns">
-									<a href="" class="reply">回复(0)</a>
-									<a href="" class="useful">有用(0)</a>
-								</div>
-							</div>
-							<div class="cornor"></div>
-						</div>
-
+						
 						<!-- 分页信息 start -->
-						<div class="page mt20">
+						<!-- <div class="page mt20">
 							<a href="">首页</a>
 							<a href="">上一页</a>
 							<a href="">1</a>
@@ -931,7 +823,7 @@
 							<a href="">5</a>
 							<a href="">下一页</a>
 							<a href="">尾页</a>
-						</div>
+						</div> -->
 						<!-- 分页信息 end -->
 
 						<!--  评论表单 start-->
@@ -940,16 +832,16 @@
 								<ul>
 									<li>
 										<label for=""> 评分：</label>
-										<input type="radio" name="grade" /> <strong class="star star5"></strong>
-										<input type="radio" name="grade" /> <strong class="star star4"></strong>
-										<input type="radio" name="grade" /> <strong class="star star3"></strong>
-										<input type="radio" name="grade" /> <strong class="star star2"></strong>
-										<input type="radio" name="grade" /> <strong class="star star1"></strong>
+										<input type="radio" name="grade" value="5"/> <strong class="star star5"></strong>
+										<input type="radio" name="grade" value="4"/> <strong class="star star4"></strong>
+										<input type="radio" name="grade" value="3"/> <strong class="star star3"></strong>
+										<input type="radio" name="grade" value="2"/> <strong class="star star2"></strong>
+										<input type="radio" name="grade" value="1"/> <strong class="star star1"></strong>
 									</li>
 
 									<li>
 										<label for="">评价内容：</label>
-										<textarea name="" id="" cols="" rows=""></textarea>
+										<textarea name="content" id="" cols="" rows=""></textarea>
 									</li>
 									<li>
 										<label for="">&nbsp;</label>

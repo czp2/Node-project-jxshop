@@ -4,7 +4,7 @@ $(function () {
     function getAddressList() {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/index.jsp",
+            url: "/qfApi/address/index.jsp",
             type: "get",
             data: {
                 token,
@@ -18,11 +18,9 @@ $(function () {
                     <dl aid="${item.address_id}">
                         <dt>${index+1}.${item.consignee} ${item.provinceName} ${item.cityName} ${item.districtName} ${item.mobile} </dt>
                         <dd>
-                            <a href="javascript:;" class='del'>删除</a>
-                            <a href="javascript:;" class='default'>设为默认地址</a>
-                        </dd>
-                    </dl>
-                    `
+                            <a href="javascript:;" class='del'>删除</a>`
+                    if (item.is_default==0) html += ` <a href="javascript:;" class='default'>设为默认地址</a>`
+                    html += `</dd></dl>`
                 })
                 $('.address_hd').html(html)
             },
@@ -35,7 +33,7 @@ $(function () {
     $('.address_hd').on('click', 'dl dd a.del', function () {
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/delete.jsp",
+            url: "/qfApi/address/delete.jsp",
             type: "post",
             data: {
                 token,
@@ -54,7 +52,7 @@ $(function () {
         console.log($(this));
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/default.jsp",
+            url: "/qfApi/address/default.jsp",
             type: "post",
             data: {
                 token,
@@ -62,7 +60,7 @@ $(function () {
             },
             success: (res) => {
                 console.log(res.data);
-                // getAddressList()
+                getAddressList()
             },
             error: (err) => {},
             dataType: 'json'
@@ -77,30 +75,16 @@ $(function () {
     //点击保存
     $('.address_bd .btn').click(function (e) {
         e.preventDefault()
-        let username = $('.address_bd ul li:eq(0) .txt').val()
-        let province = $('.address_bd ul li:eq(1) select:eq(0)').val()
-        let city = $('.address_bd ul li:eq(1) select:eq(1)').val()
-        let district = $('.address_bd ul li:eq(1) select:eq(2)').val()
-        let address = $('.address_bd ul li:eq(2) .address').val()
-        let mobile = $('.address_bd ul li:eq(3) .txt').val()
-        let is_default = $('.address_bd ul li:eq(4) .check').val()
-        console.log(token, username, province, city, district, address, mobile, is_default);
+        let formData = 'token=' + token + '&' + $('.address_bd form').serialize()
+        // console.log(formData);
         $.ajax({
             async: false,
-            url: "http://kg.zhaodashen.cn/v1/address/create.jsp",
+            url: "/qfApi/address/create.jsp",
             type: "post",
-            data: {
-                token,
-                username,
-                province,
-                city,
-                district,
-                address,
-                mobile,
-                is_default
-            },
+            data: formData,
             success: (res) => {
-                $('form[name="address_form"]').reset()
+                $('.address_bd form')[0].reset()
+                getAddressList()
             },
             error: (err) => {},
             dataType: 'json'
@@ -108,7 +92,7 @@ $(function () {
     })
     // 省
     $('.address_bd ul li:eq(1) select:eq(0)').html('<option value="">请求中...</option>')
-    $.get('http://kg.zhaodashen.cn/v1/area/index.jsp', {
+    $.get('/qfApi/area/index.jsp', {
         type: '省',
         pid: 1
     }, res => {
@@ -127,7 +111,7 @@ $(function () {
         let val = $(this).val()
         // console.log(val)
         // 2. 继续发送异步请求
-        $.get('http://kg.zhaodashen.cn/v1/area/index.jsp', {
+        $.get('/qfApi/area/index.jsp', {
             type: '市',
             pid: val
         }, res => {
@@ -147,7 +131,7 @@ $(function () {
         let val = $(this).val()
         // console.log(val)
         // 2. 继续发送异步请求
-        $.get('http://kg.zhaodashen.cn/v1/area/index.jsp', {
+        $.get('/qfApi/area/index.jsp', {
             type: '区/县',
             pid: val
         }, res => {
