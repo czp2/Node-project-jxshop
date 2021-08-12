@@ -11,6 +11,7 @@
 
 	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="./js/cart2.js"></script>
+	<script type="text/javascript" src="./api/flow2.js"></script>
 
 </head>
 <body>
@@ -22,7 +23,8 @@
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，欢迎来到京西！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>] </li>
+					<li>						<script type="text/javascript" src="./api/public-login.js"></script>
+</li>
 					<li class="line">|</li>
 					<li>我的订单</li>
 					<li class="line">|</li>
@@ -70,7 +72,7 @@
 
 				<div class="address_select none">
 					<ul>
-						<li class="cur">
+						<!-- <li class="cur">
 							<input type="radio" name="address" checked="checked" />王超平 北京市 昌平区 建材城西路金燕龙办公楼一层 13555555555 
 							<a href="">设为默认地址</a>
 							<a href="">编辑</a>
@@ -82,7 +84,7 @@
 							<a href="">编辑</a>
 							<a href="">删除</a>
 						</li>
-						<li><input type="radio" name="address" class="new_address"  />使用新地址</li>
+						<li><input type="radio" name="address" class="new_address"  />使用新地址</li> -->
 					</ul>	
 					<form action="" class="none" name="address_form">
 						<ul>
@@ -127,7 +129,7 @@
 							</li>
 						</ul>
 					</form>
-					<a href="" class="confirm_btn"><span>保存收货人信息</span></a>
+					<a href="javascript:;" class="confirm_btn"><span>保存收货人信息</span></a>
 				</div>
 			</div>
 			<!-- 收货人信息  end-->
@@ -311,7 +313,6 @@
 		<div class="fillin_ft">
 			<a href=""><span>提交订单</span></a>
 			<p>应付总额：<strong>￥5076.00元</strong></p>
-			
 		</div>
 	</div>
 	<!-- 主体部分 end -->

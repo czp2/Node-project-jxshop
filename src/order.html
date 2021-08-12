@@ -1,5 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>订单页面</title>
@@ -8,23 +10,28 @@
 	<link rel="stylesheet" href="./css/header.css" type="text/css">
 	<link rel="stylesheet" href="./css/home.css" type="text/css">
 	<link rel="stylesheet" href="./css/order.css" type="text/css">
+	<link rel="stylesheet" href="./css/cart.css" type="text/css">
 	<link rel="stylesheet" href="./css/bottomnav.css" type="text/css">
 	<link rel="stylesheet" href="./css/footer.css" type="text/css">
 
 	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script type="text/javascript" src="./js/home.js"></script>
+	<script type="text/javascript" src="./api/order.js"></script>
 </head>
+
 <body>
-		<!-- 顶部导航 start -->
+	<!-- 顶部导航 start -->
 	<div class="topnav">
 		<div class="topnav_bd w1210 bc">
 			<div class="topnav_left">
-				
+
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，欢迎来到京西！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>] </li>
+					<li>
+						<script type="text/javascript" src="./api/public-login.js"></script>
+					</li>
 					<li class="line">|</li>
 					<li>我的订单</li>
 					<li class="line">|</li>
@@ -35,7 +42,7 @@
 		</div>
 	</div>
 	<!-- 顶部导航 end -->
-	
+
 	<div style="clear:both;"></div>
 
 	<!-- 头部 start -->
@@ -52,7 +59,7 @@
 					</form>
 					<div class="form_right fl"></div>
 				</div>
-				
+
 				<div style="clear:both;"></div>
 
 				<div class="hot_search">
@@ -111,7 +118,7 @@
 			<div class="cart fl">
 				<dl>
 					<dt>
-						<a href="./order.html">去购物车结算</a>
+						<a href="./flow1.html">去购物车结算</a>
 						<b></b>
 					</dt>
 					<dd>
@@ -124,20 +131,22 @@
 			<!-- 购物车 end -->
 		</div>
 		<!-- 头部上半部分 end -->
-		
+
 		<div style="clear:both;"></div>
 
 		<!-- 导航条部分 start -->
 		<div class="nav w1210 bc mt10">
 			<!--  商品分类部分 start-->
-			<div class="category fl cat1"> <!-- 非首页，需要添加cat1类 -->
-				<div class="cat_hd">  <!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
+			<div class="category fl cat1">
+				<!-- 非首页，需要添加cat1类 -->
+				<div class="cat_hd">
+					<!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
 					<h2>全部商品分类</h2>
 					<em></em>
 				</div>
-				
+
 				<div class="cat_bd none">
-					
+
 					<div class="cat item1">
 						<h3><a href="">图像、音像、数字商品</a> <b></b></h3>
 						<div class="cat_detail">
@@ -150,7 +159,7 @@
 									<a href="">婚恋/两性</a>
 									<a href="">文学</a>
 									<a href="">经管</a>
-									<a href="">畅读VIP</a>						
+									<a href="">畅读VIP</a>
 								</dd>
 							</dl>
 
@@ -185,7 +194,7 @@
 									<a href="">传纪</a>
 									<a href="">艺术</a>
 									<a href="">经管</a>
-									<a href="">畅读VIP</a>						
+									<a href="">畅读VIP</a>
 								</dd>
 							</dl>
 
@@ -264,7 +273,7 @@
 									<a href="">洗衣机</a>
 									<a href="">热水器</a>
 									<a href="">DVD</a>
-									<a href="">烟机/灶具</a>						
+									<a href="">烟机/灶具</a>
 								</dd>
 							</dl>
 
@@ -277,7 +286,7 @@
 									<a href="">饮水机</a>
 									<a href="">净水设备</a>
 									<a href="">吸尘器</a>
-									<a href="">电风扇</a>						
+									<a href="">电风扇</a>
 								</dd>
 							</dl>
 
@@ -290,7 +299,7 @@
 									<a href="">咖啡机</a>
 									<a href="">微波炉</a>
 									<a href="">电磁炉</a>
-									<a href="">电水壶</a>						
+									<a href="">电水壶</a>
 								</dd>
 							</dl>
 
@@ -303,7 +312,7 @@
 									<a href="">足浴盆</a>
 									<a href="">血压计</a>
 									<a href="">体温计</a>
-									<a href="">血糖仪</a>						
+									<a href="">血糖仪</a>
 								</dd>
 							</dl>
 
@@ -316,7 +325,7 @@
 									<a href="">龙头</a>
 									<a href="">门铃</a>
 									<a href="">电器开关</a>
-									<a href="">插座</a>						
+									<a href="">插座</a>
 								</dd>
 							</dl>
 						</div>
@@ -325,84 +334,84 @@
 					<div class="cat">
 						<h3><a href="">手机、数码</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">电脑、办公</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">家局、家具、家装、厨具</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">服饰鞋帽</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">个护化妆</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">礼品箱包、钟表、珠宝</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">运动健康</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">汽车用品</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">母婴、玩具乐器</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">食品饮料、保健食品</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">彩票、旅行、充值、票务</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 				</div>
 
 			</div>
-			<!--  商品分类部分 end--> 
+			<!--  商品分类部分 end-->
 
 			<div class="navitems fl">
 				<ul class="fl">
@@ -420,7 +429,7 @@
 		<!-- 导航条部分 end -->
 	</div>
 	<!-- 头部 end-->
-	
+
 	<div style="clear:both;"></div>
 
 	<!-- 页面主体 start -->
@@ -428,7 +437,7 @@
 		<div class="crumb w1210">
 			<h2><strong>我的XX </strong><span>> 我的订单</span></h2>
 		</div>
-		
+
 		<!-- 左侧导航菜单 start -->
 		<div class="menu fl">
 			<h3>我的XX</h3>
@@ -487,24 +496,24 @@
 				<table class="orders">
 					<thead>
 						<tr>
-							<th width="10%">订单号</th>
 							<th width="20%">订单商品</th>
+							<th width="20%">商品信息</th>
 							<th width="10%">收货人</th>
-							<th width="20%">订单金额</th>
-							<th width="20%">下单时间</th>
-							<th width="10%">订单状态</th>
+							<th width="10%">单价</th>
+							<th width="10%">数量</th>
+							<th width="10%">小计</th>
 							<th width="10%">操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<!-- <tr>
 							<td><a href="">852592106</a></td>
 							<td><a href=""><img src="./imgs/order1.jpg" alt="" /></a></td>
 							<td>神龙教主</td>
 							<td>￥35.00 货到付款</td>
 							<td>2013-11-12 16:28:14</td>
 							<td>已取消</td>
-							<td><a href="" com="快递公司" no="快递单号" >查看物流</a> | <a href="">删除</a></td>
+							<td><a href="" com="快递公司" no="快递单号">查看物流</a> | <a href="">删除</a></td>
 						</tr>
 						<tr>
 							<td><a href="">852571653</a></td>
@@ -513,7 +522,7 @@
 							<td>￥35.00 在线支付</td>
 							<td>2013-11-13 19:28:14</td>
 							<td>已完成</td>
-							<td><a href="" com="快递公司" no="快递单号" >查看物流</a> | <a href="">删除</a></td>
+							<td><a href="" com="快递公司" no="快递单号">查看物流</a> | <a href="">删除</a></td>
 						</tr>
 						<tr>
 							<td><a href="">471196680</a></td>
@@ -522,9 +531,9 @@
 							<td>￥169.00 货到付款</td>
 							<td>2013-02-20 23:00:00</td>
 							<td>已完成</td>
-							<td><a href="" com="快递公司" no="快递单号" >查看物流</a> | <a href="">删除</a></td>
-						</tr>
-					</tbody> 
+							<td><a href="" com="快递公司" no="快递单号">查看物流</a> | <a href="">删除</a></td>
+						</tr> -->
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -547,7 +556,7 @@
 				<li><a href="">联系客服</a></li>
 			</ul>
 		</div>
-		
+
 		<div class="bnav2">
 			<h3><b></b> <em>配送方式</em></h3>
 			<ul>
@@ -559,7 +568,7 @@
 			</ul>
 		</div>
 
-		
+
 		<div class="bnav3">
 			<h3><b></b> <em>支付方式</em></h3>
 			<ul>
@@ -614,7 +623,7 @@
 			<a href="">京西论坛</a>
 		</p>
 		<p class="copyright">
-			 © 2005-2013 京东网上商城 版权所有，并保留所有权利。  ICP备案证书号:京ICP证070359号 
+			© 2005-2013 京东网上商城 版权所有，并保留所有权利。 ICP备案证书号:京ICP证070359号
 		</p>
 		<p class="auth">
 			<a href=""><img src="./imgs/xin.png" alt="" /></a>
@@ -625,4 +634,5 @@
 	</div>
 	<!-- 底部版权 end -->
 </body>
+
 </html>

@@ -1,13 +1,18 @@
 $(function () {
     // let goodsId = location.href.split('?')[1].split('=')[1]
+    //获取传过来的参数
     let goodsId = getParams('gid')
+    let token = localStorage.getItem('token')
     // console.log(goodsId);
+    //调用商品详情接口
     $.get('http://kg.zhaodashen.cn/v1/goods/detail.jsp', {
         goodsId
     }, res1 => {
         console.log('http://kg.zhaodashen.cn/v1/goods/detail.jsp,返回值：',res1.data);
         let r1 = res1.data;
+        //类别id
         let cat = r1.cat_id;
+        //调用商品属性接口（暂时没用）
         $.post('http://kg.zhaodashen.cn/v1/category/attr.jsp', {
             cat
         }, res2 => {
@@ -31,45 +36,8 @@ $(function () {
 						<div class="smallpic_wrap">
 							<ul>
 								<li class="cur">
-									<a class="zoomThumbActive" href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: 'images/preview_m1.jpg',largeimage: 'images/preview_l1.jpg'}"><img src="./imgs/preview_s1.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: 'images/preview_m2.jpg',largeimage: 'images/preview_l2.jpg'}"><img src="./imgs/preview_s2.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m3.jpg',largeimage: 'images/preview_l3.jpg'}">  
-	    							<img src="./imgs/preview_s3.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m4.jpg',largeimage: 'images/preview_l4.jpg'}">  
-	    							<img src="./imgs/preview_s4.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m5.jpg',largeimage: 'images/preview_l5.jpg'}">  
-	    							<img src="./imgs/preview_s5.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m6.jpg',largeimage: 'images/preview_l6.jpg'}">  
-	    							<img src="./imgs/preview_s6.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m7.jpg',largeimage: 'images/preview_l7.jpg'}">  
-	    							<img src="./imgs/preview_s7.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m8.jpg',largeimage: 'images/preview_l8.jpg'}">  
-	    							<img src="./imgs/preview_s8.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m9.jpg',largeimage: 'images/preview_l9.jpg'}">  
-	    							<img src="./imgs/preview_s9.jpg"></a>
+									<a class="zoomThumbActive" href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: 'images/preview_m1.jpg',largeimage: 'images/preview_l1.jpg'}">
+                                    <img src="http://tmp00001.zhaodashen.cn/${r1.goods_img}"></a>
 								</li>
 							</ul>
 						</div>
@@ -158,11 +126,11 @@ $(function () {
 
         }, 'json')
 
-        $.get('http://kg.zhaodashen.cn/v1/category/index.jsp', {
-            cat_id: 662
-        }, res => {
+        //调用商品所有分类接口
+        $.get('http://kg.zhaodashen.cn/v1/category/index.jsp', {}, res => {
             $.each(res.data, function (index, item) {
                 // console.log(index,item);
+                //判断类别id是否一致
                 if (item.cat_id === cat) {
                     // console.log(item);
                     $('.breadcrumb').html(`<h2>当前位置：<a href="">首页</a> > <a href="">${item.cat_name}</a> > <a href="">${item.keywords}</a> >${item.children[0].cat_name}</h2>`)
@@ -181,4 +149,17 @@ $(function () {
             })
         }, 'json')
     }, 'json')
+
+    //添加至购物车
+    $('.summary').on('click','.add_btn',function(e){
+        // console.log(1);
+        e.preventDefault()
+        $.post('http://kg.zhaodashen.cn/v1/cart/create.jsp',{
+            goodsId,
+            buyNum:1,
+            token
+        },res=>{
+            console.log(res.data);
+        },'json')
+    })
 })
